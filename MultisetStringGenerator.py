@@ -16,8 +16,6 @@ class MultisetStringGenerator:
     def generateStringLabels(self, g):
         concatString = ""
         for v in g.vs:
-            #concatArr = [str(each) for each in v["currMultiset"]]
-            for each in v["currMultiset"]:
+            for each in v[Labels.MULTISET]:
                 concatString = concatString + str(each)
-            #concatString = ''.join(concatArr)
             v[Labels.CURRENT_LABEL_STR] = str(v[Labels.PREV_LABEL]) + concatString
