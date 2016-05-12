@@ -20,7 +20,7 @@ G1 = generateTree(2)
 G2 = generateTree(2)
 G3 = generateRandom(0.1)
 G4 = generateRandom(0.2)
-n = 10
+
 print (G1)
 algo = WL()
 #displayG(G1)
