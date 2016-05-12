@@ -30,7 +30,7 @@ class LabelCompression:
         self.testGraph = self.createTestGraph()
         displayG(self.testGraph)
         self.initHash()
-    
+
     def compress(self, g):
         labels = []
         labels = [ v[Labels.CURRENT_LABEL_STR] for v in g.vs ]
@@ -45,11 +45,12 @@ class LabelCompression:
                 self.HASH['index'] = newIndex
                 fs = newIndex
                 self.HASH[s] = fs
-        
+
         #relabelling
         for v in g.vs:
             v[Labels.PREV_LABEL] = self.HASH[v[Labels.CURRENT_LABEL_STR]]
 
+        g.setOfNewlyCreatedLabels = set([ v[Labels.PREV_LABEL] for v in g.vs ])
         return g
 
     def testGraph(self):
@@ -60,13 +61,10 @@ summary(comp.testGraph)
 g = comp.testGraph
 for v in g.vs:
             vNeigh = g.neighbors(v, mode="out")
-            print('curr: ' + v[Labels.CURRENT_LABEL_STR])
-            print('neighCount: ' + str(len(vNeigh)))
+            #print('curr: ' + v[Labels.CURRENT_LABEL_STR])
+            #print('neighCount: ' + str(len(vNeigh)))
 
 comp.compress(comp.testGraph)
 
-for v in g.vs:
-            print('newLabel: ' + v[Labels.PREV_LABEL])
-
-
-
+#for v in g.vs:
+            #print('newLabel: ' + v[Labels.PREV_LABEL])

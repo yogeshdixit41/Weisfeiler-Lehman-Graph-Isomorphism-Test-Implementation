@@ -28,9 +28,12 @@ class WL:
             mlsg.generateStringLabels(g2)
             g1 = compressor.compress(g1)
             g2 = compressor.compress(g2)
-            print("--------------------------------")
-            print(g1)
-            print("...............")
-            print(g2)
-            print("--------------------------------")
+
+        #print(g1.setOfNewlyCreatedLabels)
+        #print(g2.setOfNewlyCreatedLabels)
+
+        if(g1.setOfNewlyCreatedLabels == g2.setOfNewlyCreatedLabels):
+            print ("Graphs are isomorphic")
+        else:
+            print ("Graphs are not isomorphic")
             #compare g1 and g2

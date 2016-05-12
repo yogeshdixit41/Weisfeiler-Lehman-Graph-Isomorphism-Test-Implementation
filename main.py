@@ -1,9 +1,9 @@
 from igraph import *
 from WL import *
 
-def generateTree(seed):
+def generateTree(nodes, seed):
     degree = seed;
-    g = Graph.Tree(10, degree)
+    g = Graph.Full(degree)
     return g
 
 def generateRandom(seed):
@@ -16,25 +16,17 @@ def displayG(g):
 
 
 
-G1 = generateTree(2)
-G2 = generateTree(2)
+G1 = generateTree(10, 2)
+G2 = generateTree(10, 3)
 G3 = generateRandom(0.1)
 G4 = generateRandom(0.2)
-n = 10
+n = 12
 
 algo = WL()
 
 #displayG(G1)
 #displayG(G2)
-
 algo.execute(G1, G2, n)
-for v in G1.vs:
-    print (v)
-
-print("------------")
-
-for v in G2.vs:
-    print(v)
 
 # algo2 = WL()
 
