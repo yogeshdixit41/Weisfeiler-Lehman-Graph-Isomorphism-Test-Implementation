@@ -4,15 +4,19 @@ from MultisetLabelGenerator import *
 from Compression import *
 
 class WL:
+    def initIteration(self, g):
+        for v in g.vs:
+            v[Labels.CURRENT_LABEL_STR] = v[Labels.PREV_LABEL] = str(v.degree())
+
     def execute(self, g1, g2, numberOfIterations):
+
         mlg = MultisetLabelGenerator()
         mlsg = MultisetStringGenerator()
         compressor = LabelCompression()
 
-        mlg.initLabels(g1)
-        mlg.initLabels(g2)
-        mlsg.initLabelStrings(g1)
-        mlsg.initLabelStrings(g2)
+        self.initIteration(g1)
+        self.initIteration(g2)
+
         compressor.initHash()
         g1 = compressor.compress(g1) #hash initialization
         g2 = compressor.compress(g2) #hash initialization
@@ -30,4 +34,3 @@ class WL:
             print(g2)
             print("--------------------------------")
             #compare g1 and g2
-

@@ -5,10 +5,7 @@ import Labels
 
 class MultisetLabelGenerator:
 
-    def initLabels(self, g):
-        for v in g.vs:
-            v[Labels.PREV_LABEL] = str(v.degree())
-
+    
     def generateLabels(self, g):
         for v in g.vs:
             v[Labels.MULTISET] = []

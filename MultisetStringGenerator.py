@@ -8,9 +8,7 @@ class MultisetStringGenerator:
     * input params: multiset
     * output:
     '''
-    def initLabelStrings(self, g):
-        for v in g.vs:
-            v[Labels.CURRENT_LABEL_STR] = str(v.degree())
+
 
 
     def generateStringLabels(self, g):
