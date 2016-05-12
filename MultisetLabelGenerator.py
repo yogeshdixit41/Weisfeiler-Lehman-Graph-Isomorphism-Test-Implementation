@@ -11,5 +11,7 @@ class MultisetLabelGenerator:
 
     def generateLabels(self, g):
         for v in g.vs:
-            v[Labels.MULTISET] = [nv[Labels.PREV_LABEL] for nv in v.neighbors()]
+            v[Labels.MULTISET] = []
+            for nv in v.neighbors():
+                v[Labels.MULTISET].append(nv[Labels.PREV_LABEL])
             v[Labels.MULTISET].sort()
