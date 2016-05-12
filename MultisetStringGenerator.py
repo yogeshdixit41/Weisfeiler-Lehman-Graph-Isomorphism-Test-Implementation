@@ -8,18 +8,14 @@ class MultisetStringGenerator:
     * input params: multiset
     * output:
     '''
-    def initLabelStrings(self, g1, g2):
-        for v in g1.vs:
-            v[Labels.CURRENT_LABEL_STR] = str(v[Labels.PREV_LABEL])
-        for v in g1.vs:
-            print (v)
-        pass
+    def initLabelStrings(self, g):
+        for v in g.vs:
+            v[Labels.CURRENT_LABEL_STR] = str(v.degree())
+        
 
-    def generateStringLabels(self, g1, g2):
+    def generateStringLabels(self, g):
         concatString = ""
-        for v in g1.vs:
-            for each in v["currMultiset"]:
-                concatString = concatString + str(each)
-            v[Labels.CURRENT_LABEL_STR] = str( v[Labels.PREV_LABEL]) + concatString
-            print (v[Labels.CURRENT_LABEL_STR])
-        pass
+        for v in g.vs:
+            concatArr = [str(each) for each in v["currMultiset"]]
+            concatString = ''.join(concatArr)
+            v[Labels.CURRENT_LABEL_STR] = str(v[Labels.PREV_LABEL]) + concatString

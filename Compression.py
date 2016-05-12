@@ -33,19 +33,18 @@ class LabelCompression:
     
     def compress(self, g):
         labels = []
-        for v in g.vs:
-            s = v[Labels.CURRENT_LABEL_STR]
-            labels.append(s)
+        labels = [ v[Labels.CURRENT_LABEL_STR] for v in g.vs ]
 
-        sortedLabels = sorted(labels)
-        
-        for s in sortedLabels:
+        labels.sort()
+
+        for s in labels:
             fs = -1
             if s not in self.HASH:
                 currentIndex = self.HASH['index']
                 newIndex = str(int(currentIndex) + 1)
                 self.HASH['index'] = newIndex
                 fs = newIndex
+                self.HASH[s] = fs
         
         #relabelling
         for v in g.vs:
