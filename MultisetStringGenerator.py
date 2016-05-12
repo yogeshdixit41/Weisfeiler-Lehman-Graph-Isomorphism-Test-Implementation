@@ -1,3 +1,7 @@
+'''
+File written by Yogesh Dixit
+Date : 12 May 2016
+'''
 from igraph import *
 from WL import *
 from MultisetLabelGenerator import *
