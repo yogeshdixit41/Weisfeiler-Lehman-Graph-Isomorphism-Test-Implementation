@@ -9,12 +9,12 @@ def displayG(g):
 
 class LabelCompression:
 
-    def initHash(self):
+    def __init__(self):
         self.HASH = dict()
-        self.HASH['index'] = '1'
-        self.HASH['1'] = '1'
-        self.HASH['2'] = '2'
-        self.HASH['3'] = '3'
+        self.HASH['index'] = '0'
+
+    def getHASH(self):
+        return self.HASH
 
     def createTestGraph(self):
         testGraph = Graph.GRG(10, 0.2)
@@ -25,11 +25,6 @@ class LabelCompression:
 
         testGraph['name'] = 'LGtest'
         return testGraph
-
-    def __init__(self):
-        self.testGraph = self.createTestGraph()
-        displayG(self.testGraph)
-        self.initHash()
 
     def compress(self, g):
         labels = []
@@ -56,15 +51,3 @@ class LabelCompression:
     def testGraph(self):
         return self.testGraph
 
-comp = LabelCompression()
-summary(comp.testGraph)
-g = comp.testGraph
-for v in g.vs:
-            vNeigh = g.neighbors(v, mode="out")
-            #print('curr: ' + v[Labels.CURRENT_LABEL_STR])
-            #print('neighCount: ' + str(len(vNeigh)))
-
-comp.compress(comp.testGraph)
-
-#for v in g.vs:
-            #print('newLabel: ' + v[Labels.PREV_LABEL])
