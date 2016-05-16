@@ -10,28 +10,6 @@ def displayG(g):
 def writeG(g):
     layout = g.layout("kk")
     plot(g, layout = layout, target=g['name'] + '.png')
-# Tests:
-# 
-
-def testLCF():
-    g1=Graph.LCF(12, (5, -5), 6)
-    g2=Graph.Famous("Franklin")
-
-    t0 = pc()
-    print(g1.isomorphic(g2))
-    print(pc() - t0)
-
-    g1['name'] = "LCF"
-    g2['name'] = "Franklin"
-    writeG(g1)
-    writeG(g2)
-    algo = WL()
-    t0 = pc()
-    isomorphic = algo.execute(g1, g2, 12)
-    print("Isomorphic = " + str(isomorphic))
-    print(pc() - t0)
-
-    # self.assertRaises(InternalError, Graph.LCF, 12, (5, -5), -3)
 
 def testVF2(g1, g2):
     t0 = pc()
@@ -40,7 +18,7 @@ def testVF2(g1, g2):
 
 def testWL(algo, g1, g2):
     t0 = pc()
-    isomorphic = algo.execute(g1, g2, 12)
+    isomorphic = algo.execute(g1, g2, 15)
     print("WL: " + str(isomorphic))
     return pc() - t0
 
@@ -50,7 +28,8 @@ def testLCFStat12():
     t1 = testVF2(g1, g2)
     wl = WL()
     t2 = testWL(wl, g1, g2)
-    return ['testLCFStat12', t1, t2]    
+    print('testLCFStat12')
+    return ['testLCFStat12', t1, t2]
 
 def testFull100ISO():
     g1 = Graph.Full(100)
@@ -58,6 +37,7 @@ def testFull100ISO():
     t1 = testVF2(g1, g2)
     wl = WL()
     t2 = testWL(wl, g1, g2)
+    print('testFull100ISO')
     return ['testFull100ISO', t1, t2]
 
 def testFull1000ISO():
@@ -66,24 +46,41 @@ def testFull1000ISO():
     t1 = testVF2(g1, g2)
     wl = WL()
     t2 = testWL(wl, g1, g2)
+    print('testFull1000ISO')
     return ['testFull1000ISO', t1, t2]
 
 def testFull1000NONISO():
-    return []
+    g1 = Graph.Tree(1000, 4, TREE_UNDIRECTED )
+    g2 = Graph.Full(1000)
+    t1 = testVF2(g1, g2)
+    wl = WL()
+    t2 = testWL(wl, g1, g2)
+    print('testFull1000NONISO')
+    return ['testFull1000NONISO', t1, t2]
 
 def testTREE100ISO():
-    return []
+    g1 = Graph.Tree(100, 4, TREE_UNDIRECTED )
+    g2 = Graph.Tree(100, 4, TREE_UNDIRECTED)
+    t1 = testVF2(g1, g2)
+    wl = WL()
+    t2 = testWL(wl, g1, g2)
+    print('testTREE100ISO')
+    return ['testTREE100ISO', t1, t2]
 
 def testTREE1000ISO():
-    return []
+    g1 = Graph.Tree(1000, 4, TREE_UNDIRECTED )
+    g2 = Graph.Tree(1000, 4, TREE_UNDIRECTED)
+    t1 = testVF2(g1, g2)
+    wl = WL()
+    t2 = testWL(wl, g1, g2)
+    print('testTREE1000ISO')
+    return ['testTREE1000ISO', t1, t2]
+
 
 
 def main():
-    formula = "Alice-Bob-Cecil-Alice, Daniel-Cecil-Eugene, Cecil-Gordon"
-    g = Graph.Formula(formula)
-    # displayG(g)
-    # testLCF()
     stat1 = testLCFStat12()
+    #print(stat1)
     stat2 = testFull100ISO()
     stat3 = testFull1000ISO()
     stat4 = testFull1000NONISO()
@@ -105,4 +102,3 @@ print(str(stats))
 # r = tracer.results()
 # r.write_results(show_missing=True, coverdir=".")
 # print(str(r))
-

@@ -20,7 +20,7 @@ class WL:
         g1 = compressor.compress(g1) #hash initialization
         g2 = compressor.compress(g2) #hash initialization
         # print(str(compressor.getHASH()))
-        
+
         ret = True
         for index in range(1, numberOfIterations):
             mlg.generateLabels(g1)
@@ -35,11 +35,10 @@ class WL:
             # print(g1.setOfNewlyCreatedLabels)
             # print(g2.setOfNewlyCreatedLabels)
             if(g1.setOfNewlyCreatedLabels == g2.setOfNewlyCreatedLabels):
-                print ("Iter#" + str(index) + ": Labels match")
+                pass
             else:
                 print ("Iter#" + str(index) + ": Labels mismatch")
                 ret = False
                 break
 
         return ret
-
